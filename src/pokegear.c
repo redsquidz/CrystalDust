@@ -935,7 +935,7 @@ static void LoadCardBgs(enum CardType newCard)
             ShowBg(2);
             LZ77UnCompVram(gMapCardTilemap, (void *)(VRAM + 0xE000));
             sPokegearStruct.map = AllocZeroed(sizeof(struct RegionMap));
-            InitRegionMapData(sPokegearStruct.map, &sBgTemplates[2], MAPMODE_POKEGEAR, REGION_MAP_XOFF);  // TODO: Make check for button
+            InitRegionMapData(sPokegearStruct.map, &sBgTemplates[2], MAPMODE_POKEGEAR, REGION_MAP_XOFF, 0);  // TODO: Make check for button
             while(LoadRegionMapGfx(FALSE));
             break;
         case PhoneCard:
