@@ -2799,18 +2799,18 @@ static void CreateInterfaceSprites(u8 page)
     gSprites[spriteId].sIsDownArrow = TRUE;
     gSprites[spriteId].vFlip = TRUE;
 
-    CreateSprite(&sScrollBarSpriteTemplate, 236, 20, 0);
+    CreateSprite(&sScrollBarSpriteTemplate, 228, 20, 0);
     // Start button
-    CreateSprite(&sInterfaceTextSpriteTemplate, 16, 152, 0);
+    CreateSprite(&sInterfaceTextSpriteTemplate, 8, 152, 0);
     // Menu text
-    spriteId = CreateSprite(&sInterfaceTextSpriteTemplate, 48, 152, 0);
+    spriteId = CreateSprite(&sInterfaceTextSpriteTemplate, 40, 152, 0);
     StartSpriteAnim(&gSprites[spriteId], 3);
     // Select button
-    spriteId = CreateSprite(&sInterfaceTextSpriteTemplate, 80, 152, 0);
+    spriteId = CreateSprite(&sInterfaceTextSpriteTemplate, 61, 152, 0);
     StartSpriteAnim(&gSprites[spriteId], 2);
     gSprites[spriteId].data[2] = 0x80;
     // Search text
-    spriteId = CreateSprite(&sInterfaceTextSpriteTemplate, 112, 152, 0);
+    spriteId = CreateSprite(&sInterfaceTextSpriteTemplate, 93, 152, 0);
     StartSpriteAnim(&gSprites[spriteId], 1);
 /*
     spriteId = CreateSprite(&sRotatingPokeBallSpriteTemplate, 0, DISPLAY_HEIGHT / 2, 2);
