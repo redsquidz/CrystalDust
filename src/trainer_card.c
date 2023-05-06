@@ -1077,6 +1077,7 @@ static void PrintMoneyOnCard(void)
         AddTextPrinterParameterized3(1, 1, 16, 57, sTrainerCardTextColors, TEXT_SPEED_FF, gText_TrainerCardMoney);
 
     ConvertIntToDecimalStringN(gStringVar1, sData->trainerCard.money, STR_CONV_MODE_LEFT_ALIGN, 6);
+    DollarCentsFormat(gStringVar1);
     StringExpandPlaceholders(gStringVar4, gText_PokedollarVar1);
     if (sData->region != CARD_REGION_HOENN)
     {

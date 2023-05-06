@@ -1923,6 +1923,7 @@ static void DisplaySellItemPriceAndConfirm(u8 taskId)
     s16* data = gTasks[taskId].data;
 
     ConvertIntToDecimalStringN(gStringVar3, (ItemId_GetPrice(gSpecialVar_ItemId) / 2) * tItemCount, STR_CONV_MODE_LEFT_ALIGN, 6);
+    DollarCentsFormat(gStringVar3);
     StringExpandPlaceholders(gStringVar4, gText_ICanPayVar1);
     DisplayItemMessage(taskId, 2, gStringVar4, AskSellItems);
 }
@@ -1996,6 +1997,7 @@ static void ConfirmSell(u8 taskId)
     ScheduleBgCopyTilemapToVram(0);
     CopyItemName(gSpecialVar_ItemId, gStringVar1);
     ConvertIntToDecimalStringN(gStringVar3, (ItemId_GetPrice(gSpecialVar_ItemId) / 2) * tItemCount, STR_CONV_MODE_LEFT_ALIGN, 6);
+    DollarCentsFormat(gStringVar3);
     StringExpandPlaceholders(gStringVar4, gText_TurnedOverVar1ForVar2);
     DisplayItemMessage(taskId, 2, gStringVar4, SellItem);
 }

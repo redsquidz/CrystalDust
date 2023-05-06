@@ -10,6 +10,7 @@
 #include "strings.h"
 #include "text_window.h"
 #include "decompress.h"
+#include "item_menu.h"
 
 EWRAM_DATA static u8 sMoneyBoxWindowId = 0;
 
@@ -78,6 +79,7 @@ void PrintMoneyAmountInMoneyBox(u8 windowId, int amount, u8 speed)
     s32 strLength;
 
     ConvertIntToDecimalStringN(gStringVar1, amount, STR_CONV_MODE_LEFT_ALIGN, 6);
+    DollarCentsFormat(gStringVar1);
 
     strLength = 6 - StringLength(gStringVar1);
     txtPtr = gStringVar4;
@@ -96,11 +98,27 @@ void PrintMoneyAmount(u8 windowId, u8 x, u8 y, int amount, u8 speed)
 
     ConvertIntToDecimalStringN(gStringVar1, amount, STR_CONV_MODE_LEFT_ALIGN, 6);
 
+    DollarCentsFormat(gStringVar1);
+
     strLength = 6 - StringLength(gStringVar1);
     txtPtr = gStringVar4;
 
+    //need to clear pokedollar sign after dropping to 5-digit money... run addtext to clear then drop to 38 if gstringvar1 = 6
+    if (windowId == sMoneyBoxWindowId || windowId == gBagMenu->windowIds[ITEMWIN_MONEY])
+    {
+        x = 32; //text positioning for player money balance with 6-digit value
+    
+        //Clear artifacts from moving things around
+        txtPtr[0]=CHAR_SPACER;
+        txtPtr[8]=CHAR_SPACER;
+        AddTextPrinterParameterized(windowId, 0, gStringVar4, x, y, speed, NULL);
+    }
+
     while (strLength-- > 0)
         *(txtPtr++) = 0;
+
+    if (StringLength(gStringVar1) <= 6)
+        x = 38; //reset to normal x position if 5-digit balance or less
 
     StringExpandPlaceholders(txtPtr, gText_PokedollarVar1);
     AddTextPrinterParameterized(windowId, 0, gStringVar4, x, y, speed, NULL);

@@ -757,6 +757,7 @@ static void BuyMenuPrintPriceInList(u8 windowId, u16 index, s32 item, u8 y)
                 5);
         }
         
+        DollarCentsFormat(gStringVar1);
         x = 4 - StringLength(gStringVar1);
         loc = gStringVar4;
         while (x-- != 0)
@@ -1220,6 +1221,7 @@ static void Task_BuyMenu(u8 taskId)
                     {
                         StringCopy(gStringVar1, gDecorations[itemId].name);
                         ConvertIntToDecimalStringN(gStringVar2, sShopData->totalCost, STR_CONV_MODE_LEFT_ALIGN, 6);
+                        DollarCentsFormat(gStringVar2);
 
                         if (sMartInfo.martType == MART_TYPE_DECOR)
                             StringExpandPlaceholders(gStringVar4, gText_Var1IsItThatllBeVar2);
@@ -1297,6 +1299,7 @@ static void Task_BuyHowManyDialogueHandleInput(u8 taskId)
             CopyItemName(tItemId, gStringVar1);
             ConvertIntToDecimalStringN(gStringVar2, tItemCount, STR_CONV_MODE_LEFT_ALIGN, 2);
             ConvertIntToDecimalStringN(gStringVar3, sShopData->totalCost, STR_CONV_MODE_LEFT_ALIGN, 8);
+            DollarCentsFormat(gStringVar3);
             if (sMartInfo.martType == MART_TYPE_HERB)
             {
                 BuyMenuDisplayMessage(taskId, gText_Var1AndVar2OfThem, BuyMenuConfirmPurchase);

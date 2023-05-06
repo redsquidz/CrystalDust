@@ -2449,6 +2449,14 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 if (gBattleTextBuff1[0] == B_BUFF_PLACEHOLDER_BEGIN)
                 {
                     ExpandBattleTextBuffPlaceholders(gBattleTextBuff1, gStringVar1);
+
+                    //DollarFormat for battle reward money!
+                    if (gBattleTextBuff1[9] == 1)
+                    {    
+                        DollarCentsFormat(gStringVar1);
+                         gBattleTextBuff1[9] = 0; //reset flag
+                    }
+
                     toCpy = gStringVar1;
                 }
                 else

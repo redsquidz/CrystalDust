@@ -72,6 +72,41 @@ u8 *StringCopy(u8 *dest, const u8 *src)
     return dest;
 }
 
+u8 *DollarCentsFormat(u8 *MoneyString)
+{
+    s32 strLength;
+    u8 tempstring[10];
+    int i;
+    int n;
+
+    strLength = StringLength(MoneyString);
+    //How far do the numbers need to be bumped forward?
+    //if > 3 aka normal
+        n = 1;
+    if (strLength == 2)
+        n = 2;
+    if (strLength == 1)
+        n = 3;
+    
+    //initialize leading tempstring values (everything past decimal will be shuffled forward)
+    StringCopy(tempstring, MoneyString);
+
+    //shuffle everything forward again for period char
+    for(i = n; i > n - 3; i--)
+        tempstring[strLength + i] = MoneyString[strLength + i - n];
+    tempstring[strLength + n - 3] = CHAR_PERIOD;
+
+    //add leading zeros for cent values
+    if (strLength <= 2)
+        tempstring[0] = CHAR_0;
+    if (strLength == 1)
+        tempstring[2] = CHAR_0;
+
+    //done!
+    StringCopy(MoneyString, tempstring);
+    return MoneyString;
+}
+
 u8 *StringAppend(u8 *dest, const u8 *src)
 {
     while (*dest != EOS)
