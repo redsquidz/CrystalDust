@@ -312,7 +312,7 @@ static u32 LoopedTask_OpenRegionMap(s32 taskState)
         SetBgMode(1);
         InitBgTemplates(sRegionMapBgTemplates, ARRAY_COUNT(sRegionMapBgTemplates) - 1);
         regionMap = GetSubstructPtr(POKENAV_SUBSTRUCT_REGION_MAP);
-        InitRegionMapData(regionMap, &sRegionMapBgTemplates[1], MAPMODE_POKEGEAR, 0);
+        InitRegionMapData(regionMap, &sRegionMapBgTemplates[1], MAPMODE_POKEGEAR, 0, 0);
         LoadCityZoomViewGfx();
         return LT_INC_AND_PAUSE;
     case 1:
